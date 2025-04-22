@@ -1,0 +1,71 @@
+# Simple Online Voting System in Python
+
+voters = {
+    "voter1": False,
+    "voter2": False,
+    "voter3": False
+}
+
+candidates = {
+    "Alice": 0,
+    "Bob": 0,
+    "Charlie": 0
+}
+
+def display_candidates():
+    print("\nCandidates:")
+    for name in candidates:
+        print(f"- {name}")
+
+def cast_vote(voter_id):
+    if voter_id not in voters:
+        print("Invalid voter ID.")
+        return
+    if voters[voter_id]:
+        print("You have already voted.")
+        return
+
+    display_candidates()
+    choice = input(" Enter the name of the candidate you want to vote for: ")
+    if choice in candidates:
+        candidates[choice] += 1
+        voters[voter_id] = True
+        print(" Vote cast successfully!")
+    else:
+        print(" Invalid candidate.")
+
+def show_results():
+    print("\n Election Results:")
+    for name, votes in candidates.items():
+        print(f"{name}: {votes} vote(s)")
+
+def admin_panel():
+    print("\n Admin Panel")
+    password = input("Enter admin password: ")
+    if password != "admin123":
+        print(" Incorrect password.")
+        return
+    show_results()
+
+def main():
+    while True:
+        print("\n=== Online Voting System ===")
+        print("1. Cast Vote")
+        print("2. View Results (Admin)")
+        print("3. Exit")
+
+        choice = input("Select an option: ")
+
+        if choice == "1":
+            voter_id = input("Enter your Voter ID: ")
+            cast_vote(voter_id)
+        elif choice == "2":
+            admin_panel()
+        elif choice == "3":
+            print(" Thank you for participating in the election!")
+            break
+        else:
+            print(" Invalid option. Try again.")
+
+if __name__ == "__main__":
+    main()
