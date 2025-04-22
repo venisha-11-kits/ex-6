@@ -12,7 +12,7 @@ candidates = {
     "Charlie": 0
 }
 
-def display_candidates():
+def display_candidates(
     print("\nCandidates:")
     for name in candidates:
         print(f"- {name}")
